@@ -22,11 +22,11 @@ var good= function(){
 	  var image2= "img/destination.png"
 	  var input = /** @type {!HTMLInputElement} */(document.getElementById('startPoint'));
 	  var inputDos=  document.getElementById("endPoint");
-
+	  
 	  var autocomplete = new google.maps.places.Autocomplete(input);
-
+	  
 	  autocomplete.bindTo('bounds', map);
-
+	  
 	  var marker = new google.maps.Marker({
 	    map: map,
 	    anchorPoint: new google.maps.Point(0, -29)
@@ -49,7 +49,7 @@ var good= function(){
 	    marker.setIcon(/** @type {google.maps.Icon} */({
 	      url: image1,
 	    }));
-
+	    
 	    marker.setPosition(place.geometry.location);
 	    marker.setVisible(true);
 	    var address = '';
@@ -58,7 +58,7 @@ var good= function(){
 
 	  var autocompleteDos = new google.maps.places.Autocomplete(inputDos);
 	  autocompleteDos.bindTo('bounds', map);
-
+	  
 	  var markerDos = new google.maps.Marker({
 	    map: map,
 	    anchorPoint: new google.maps.Point(0, -29)
@@ -66,7 +66,7 @@ var good= function(){
 	  autocompleteDos.addListener('place_changed', function() {
 	    markerDos.setVisible(false);
 	    var place = autocompleteDos.getPlace();
-
+	    
 	    if (!place.geometry) {
 	      window.alert("Autocomplete's returned place contains no geometry");
 	      return;
@@ -90,34 +90,30 @@ var good= function(){
 }
 
 var loadPag = function () {
-	if($(location).attr("href").includes("?dl=true")){
-		document.write("<img src='img/put.png'>");
-	}else {
-		if (navigator.geolocation){
-			navigator.geolocation.getCurrentPosition(good);
-		}
-
-		$.ajax({
-			url: 'https://api.lyft.com/oauth/token',
-			type: 'POST',
-			data: {
-				grant_type: 'client_credentials',
-				scope: 'public'
-			},
-			beforeSend: function (xhr) {
-				xhr.setRequestHeader ("Authorization", "Basic " + btoa(clientId + ":" + clientSecret));
-			},
-			success: function(response) {
-				access_token = response.access_token;
-			},
-			error: function(error) {
-				console.log(error);
-			}
-		});
-
-		$("#startPoint").click(changePlaceholder);
-		$("#estimate").click(showRoute);
+	if (navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(good);
 	}
+
+	$.ajax({
+		url: 'https://api.lyft.com/oauth/token',
+		type: 'POST',
+		data: {
+			grant_type: 'client_credentials',
+			scope: 'public'
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader ("Authorization", "Basic " + btoa(clientId + ":" + clientSecret));
+		},
+		success: function(response) {
+			access_token = response.access_token;
+		},
+		error: function(error) {
+			console.log(error);
+		}
+	});
+
+	$("#startPoint").click(changePlaceholder);
+	$("#estimate").click(showRoute);
 }
 
 $(document).ready(loadPag);
