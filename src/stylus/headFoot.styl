@@ -1,0 +1,97 @@
+.black 
+    color black
+
+.textPink
+    color #FF00BF
+    display inline
+
+header span
+    color black
+    font-size 3em
+    border 0.01em solid black
+    border-radius 0.3em
+a
+    color #FF7F2B
+
+.nav>li>a:focus, .nav>li>a:hover 
+    color #FF00BF
+    text-decoration none
+    background-color transparent
+    
+.driveWith
+    border 0.01em solid black
+    border-radius 0.5em
+    
+.pac-icon
+    background-image url("../img/pickup.png")!important
+    background-size contain
+    background-position 0 center
+    
+.navbar
+    padding-top 0%
+    padding-bottom 0%
+    margin-bottom 0%
+    
+.navbar-nav>li>a
+    padding-top 5px
+    padding-bottom 5px
+    
+.navbar-collapse.collapse 
+    padding-top 1.5%
+    padding-bottom 1%
+
+header
+    border-bottom 0.1em solid lightgray
+    z-index -10
+header img
+    padding-left 25%
+    padding-top 10%
+    display inline
+
+
+
+.navbar-one-collapse img, .adp
+    display none
+.signResponsive *
+    display none
+
+
+@media screen and (max-width: 768px)
+    .navbar-toggle
+        float left
+
+    .signResponsive *
+        display inline
+        float right
+        padding-right 3%
+        padding-top 2%
+        position relative
+        top -13vw
+
+    .logoResponsive
+        padding-top 2%
+        padding-left 26%
+
+    .navbar-one-collapse img
+        float left
+
+    .driveWith
+        border none
+
+    .navbar-right .textPink
+        display none
+
+    .rate-container
+        margin-top 98vw
+
+    .navbar *
+        text-align center
+        
+    .rate-container.cars .header-txt
+        text-align center
+        position relative
+        top -39em
+    
+    .cars .btn-lyft
+        position relative
+        top -39em
